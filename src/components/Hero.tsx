@@ -2,8 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, Shield, Award } from "lucide-react";
-import WaterDroplet from "./effects/WaterDroplet";
+import { Shield, Award } from "lucide-react";import WaterDroplet from "./effects/WaterDroplet";
 import PowerWashHero from "./effects/PowerWashHero";
 import MorphingButton from "./effects/MorphingButton";
 import GlowCard from "./effects/GlowCard";
@@ -65,18 +64,7 @@ export default function Hero() {
             </motion.div>
 
             <div className="flex-1 text-center lg:text-left w-full min-w-0">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="mb-4 sm:mb-6 inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-[#00f0ff]"
-              >
-                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
-                <span>Prestige Polish LLC</span>
-              </motion.div>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
+              <motion.h1                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.35 }}
                 className="font-[family-name:var(--font-orbitron)] text-[1.75rem] leading-snug sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"

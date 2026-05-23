@@ -1,10 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Droplets } from "lucide-react";
 import PowerWasherCursor from "./PowerWasherCursor";
 import { useIsMobile } from "@/hooks/useIsMobile";
-
 /** Outdoor wood deck — local copy for reliable loading */
 export const DEFAULT_CLEAN_IMAGE = "/images/power-wash/wood-deck.jpg";
 export const DEFAULT_DIRTY_IMAGE = "/images/power-wash/wood-deck.jpg";
@@ -45,6 +43,161 @@ function drawImageCover(
   }
 
   ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+}
+
+function fitLogoFontSize(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number
+): number {
+  const maxWidth = width * 0.86;
+  const maxHeight = height * 0.34;
+  let fontSize = Math.min(width * 0.09, height * 0.22, 80);
+
+  const prestige = "PRESTIGE";
+  const polish = "POLISH";
+
+  for (let i = 0; i < 24 && fontSize > 18; i++) {
+    ctx.font = `700 ${fontSize}px Orbitron, sans-serif`;
+    const iconSize = fontSize * 0.92;
+    const gap = fontSize * 0.28;
+    const totalWidth =
+      iconSize + gap + ctx.measureText(prestige).width + ctx.measureText(polish).width;
+    const totalHeight = fontSize * 1.5;
+
+    if (totalWidth <= maxWidth && totalHeight <= maxHeight) return fontSize;
+    fontSize *= 0.9;
+  }
+
+  return fontSize;
+}
+
+async function ensureOrbitronFont(size: number) {
+  try {
+    await document.fonts.load(`700 ${Math.round(size)}px Orbitron`);
+  } catch {
+    /* fall back to sans-serif */
+  }
+}
+
+function drawDropletIcon(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  size: number,
+  fill: string,
+  glow?: string
+) {
+  ctx.save();
+  if (glow) {
+    ctx.shadowColor = glow;
+    ctx.shadowBlur = size * 0.45;
+  }
+  ctx.fillStyle = fill;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - size * 0.5);
+  ctx.bezierCurveTo(
+    cx + size * 0.45,
+    cy - size * 0.12,
+    cx + size * 0.42,
+    cy + size * 0.34,
+    cx,
+    cy + size * 0.46
+  );
+  ctx.bezierCurveTo(
+    cx - size * 0.42,
+    cy + size * 0.34,
+    cx - size * 0.45,
+    cy - size * 0.12,
+    cx,
+    cy - size * 0.5
+  );
+  ctx.fill();
+  ctx.restore();
+}
+
+/** Large PRESTIGEPOLISH mark — clean layer vs grimy dirty layer */
+function drawBrandLogo(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  variant: "clean" | "dirty"
+) {
+  const fontSize = fitLogoFontSize(ctx, width, height);
+  const iconSize = fontSize * 0.92;
+  const centerY = height * 0.46;
+  const gap = fontSize * 0.28;
+
+  ctx.save();
+  ctx.font = `700 ${fontSize}px Orbitron, sans-serif`;
+  ctx.textBaseline = "middle";
+
+  const prestige = "PRESTIGE";
+  const polish = "POLISH";
+  const prestigeWidth = ctx.measureText(prestige).width;
+  const polishWidth = ctx.measureText(polish).width;
+  const totalWidth = iconSize + gap + prestigeWidth + polishWidth;
+  const textX = width / 2 - totalWidth / 2 + iconSize + gap;
+  const iconCx = textX - gap - iconSize / 2;
+
+  if (variant === "clean") {
+    drawDropletIcon(ctx, iconCx, centerY, iconSize, "#00f0ff", "#00f0ff");
+    ctx.textAlign = "left";
+    ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
+    ctx.shadowBlur = fontSize * 0.14;
+    ctx.shadowOffsetY = fontSize * 0.04;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText(prestige, textX, centerY);
+    ctx.shadowColor = "rgba(0, 240, 255, 0.55)";
+    ctx.shadowBlur = fontSize * 0.22;
+    ctx.shadowOffsetY = 0;
+    ctx.fillStyle = "#00f0ff";
+    ctx.fillText(polish, textX + prestigeWidth, centerY);
+  } else {
+    drawDropletIcon(ctx, iconCx, centerY, iconSize, "#4a5548");
+    ctx.textAlign = "left";
+    ctx.fillStyle = "rgba(68, 58, 44, 0.94)";
+    ctx.fillText(prestige, textX, centerY);
+    ctx.fillStyle = "rgba(38, 78, 52, 0.96)";
+    ctx.fillText(polish, textX + prestigeWidth, centerY);
+
+    const pad = fontSize * 0.45;
+    const boxX = width / 2 - totalWidth / 2 - pad;
+    const boxY = centerY - fontSize * 0.72;
+    const boxW = totalWidth + pad * 2;
+    const boxH = fontSize * 1.45;
+
+    ctx.fillStyle = "rgba(82, 68, 48, 0.35)";
+    ctx.fillRect(boxX, boxY, boxW, boxH);
+
+    for (let i = 0; i < 18; i++) {
+      const sx = boxX + Math.random() * boxW;
+      const sy = boxY + Math.random() * boxH;
+      const sr = 5 + Math.random() * 16;
+      const g = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr);
+      g.addColorStop(0, "rgba(28, 26, 20, 0.55)");
+      g.addColorStop(1, "rgba(28, 26, 20, 0)");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    for (let i = 0; i < 8; i++) {
+      const sx = boxX + Math.random() * boxW;
+      const sy = boxY + Math.random() * boxH;
+      const sr = 8 + Math.random() * 22;
+      const g = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr);
+      g.addColorStop(0, "rgba(35, 95, 48, 0.45)");
+      g.addColorStop(1, "rgba(35, 95, 48, 0)");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  ctx.restore();
 }
 
 /** Wood grime: visible mold & stains without crushing brightness */
@@ -280,9 +433,17 @@ export default function PowerWashHero({
     cleanCtx.clearRect(0, 0, width, height);
     drawImageCover(cleanCtx, cleanImg, width, height);
 
+    await document.fonts.ready;
+    await ensureOrbitronFont(Math.min(width * 0.09, height * 0.22, 80));
+    drawBrandLogo(cleanCtx, width, height, "clean");
+
     const bitmap = await buildDirtyBitmap(width, height, dirtyImg);
     dirtyBitmap.current = bitmap;
     if (dirtyBitmap.current) {
+      const bitmapCtx = dirtyBitmap.current.getContext("2d");
+      if (bitmapCtx) {
+        drawBrandLogo(bitmapCtx, width, height, "dirty");
+      }
       dirtyCtx.clearRect(0, 0, width, height);
       dirtyCtx.drawImage(dirtyBitmap.current, 0, 0, width, height);
     }
@@ -443,18 +604,8 @@ export default function PowerWashHero({
           After
         </div>
 
-        {/* Brand overlay — matches navbar / site styling */}
-        <div className="absolute inset-x-0 top-[14%] sm:top-[16%] flex justify-center pointer-events-none z-20 px-4">
-          <div className="flex items-center gap-2 sm:gap-3 glass rounded-2xl px-4 py-2.5 sm:px-6 sm:py-3 shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
-            <Droplets className="h-6 w-6 sm:h-8 sm:w-8 text-[#00f0ff] shrink-0 drop-shadow-[0_0_8px_#00f0ff]" />
-            <span className="font-[family-name:var(--font-orbitron)] text-xl sm:text-3xl md:text-4xl font-bold tracking-wider text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-              PRESTIGE<span className="text-[#00f0ff]">POLISH</span>
-            </span>
-          </div>
-        </div>
-
         {hintVisible && ready && (
-          <div className="absolute inset-x-0 bottom-[18%] sm:bottom-[20%] flex justify-center pointer-events-none z-20 px-4">
+          <div className="absolute inset-x-0 bottom-[10%] sm:bottom-[12%] flex justify-center pointer-events-none z-20 px-4">
             <p className="glass rounded-full px-4 py-2 text-xs sm:text-sm text-[#00f0ff] animate-pulse">
               {isMobile ? "Drag to power wash →" : "Move the wand to power wash →"}
             </p>

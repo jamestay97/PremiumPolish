@@ -8,7 +8,7 @@ const highlights = [
   "5+ years of hands-on industry experience",
   "Fully mobile — we come to you",
   "Residential & commercial clients welcome",
-  "Newly registered LLC, veteran-level execution",
+  "Fully insured for your peace of mind",
   "Eco-conscious cleaning solutions",
   "Satisfaction-driven results every visit",
 ];
@@ -28,10 +28,9 @@ export default function About() {
               Built on <span className="text-neon-gradient">Experience</span>
             </h2>
             <p className="text-slate-400 leading-relaxed mb-6">
-              Prestige Polish LLC brings over five years of real-world expertise to every
-              job. We may be newly registered, but our team has spent years mastering the
-              art of pressure washing and mobile auto care — delivering showroom-level
-              results with next-generation service.
+              Prestige Polish LLC brings over five years of hands-on expertise to every
+              job. Our team has mastered the art of pressure washing and mobile auto care
+              — delivering showroom-level results with professional, fully insured service.
             </p>
 
             <ul className="space-y-3">
@@ -43,13 +42,20 @@ export default function About() {
               ))}
             </ul>
 
-            <a
-              href="#gallery"
-              className="inline-block mt-6 text-sm text-[#00f0ff] hover:underline"
-              data-cursor="pointer"
-            >
-              View before &amp; after gallery →
-            </a>
+            <div className="flex flex-wrap gap-4 mt-6">
+              <a
+                href="#gallery-house"
+                className="text-sm text-[#3b82f6] hover:underline"
+              >
+                House washing gallery →
+              </a>
+              <a
+                href="#gallery-car"
+                className="text-sm text-[#00f0ff] hover:underline"
+              >
+                Carwash gallery →
+              </a>
+            </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2} variant="scale">

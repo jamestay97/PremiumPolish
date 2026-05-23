@@ -10,6 +10,13 @@ import {
   Building2,
   Home,
   ArrowRight,
+  CalendarClock,
+  Landmark,
+  CarFront,
+  Eraser,
+  Trash2,
+  ParkingSquare,
+  type LucideIcon,
 } from "lucide-react";
 
 const services = [
@@ -19,8 +26,10 @@ const services = [
     description:
       "High-powered precision cleaning for driveways, patios, siding, decks, and commercial exteriors. We blast away grime with cutting-edge equipment.",
     tags: ["Residential", "Commercial"],
-    imagePath: "/images/pressure-washing.jpg",
+    imagePath: "/images/house-washing/house-3.jpg",
     imageAlt: "Pressure washing service in action",
+    galleryHref: "#gallery-house",
+    galleryLabel: "View house washing photos",
   },
   {
     icon: Car,
@@ -28,8 +37,53 @@ const services = [
     description:
       "Full-service detailing brought to your doorstep. Exterior wash, interior vacuum, tire shine, and premium finish — wherever you are.",
     tags: ["Residential", "Commercial"],
-    imagePath: "/images/mobile-carwash.jpg",
+    imagePath: "/images/car-washing/car-1.jpg",
     imageAlt: "Mobile carwash service",
+    galleryHref: "#gallery-car",
+    galleryLabel: "View carwash photos",
+  },
+];
+
+const commercialServices: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}[] = [
+  {
+    icon: CalendarClock,
+    title: "Monthly Sidewalk Washing",
+    description:
+      "Recurring scheduled service to keep storefront walkways clean, safe, and welcoming for customers year-round.",
+  },
+  {
+    icon: Landmark,
+    title: "ATM Area Cleaning",
+    description:
+      "Spotless, professional ATM zones that build customer confidence and reflect well on your business.",
+  },
+  {
+    icon: CarFront,
+    title: "Drive-Thru Cleaning",
+    description:
+      "Remove grease, grime, and buildup from high-traffic drive-thru lanes, menus, and surrounding pavement.",
+  },
+  {
+    icon: Eraser,
+    title: "Gum Removal",
+    description:
+      "Stubborn gum and sticky stains lifted from sidewalks, entryways, and other paved surfaces.",
+  },
+  {
+    icon: Trash2,
+    title: "Dumpster Pad Cleaning",
+    description:
+      "Deep sanitizing and deodorizing of dumpster pads to control odors and meet cleanliness standards.",
+  },
+  {
+    icon: ParkingSquare,
+    title: "Parking Lot Washing",
+    description:
+      "Full-lot pressure washing to remove oil stains, dirt, and debris for a sharp first impression.",
   },
 ];
 
@@ -47,8 +101,8 @@ export default function Services() {
             Our <span className="text-neon-gradient">Services</span>
           </h2>
           <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
-            Professional cleaning solutions for homes and businesses across the Bronx
-            and beyond. Residential and commercial — we handle it all.
+            Professional cleaning solutions for homes and businesses across Long Island,
+            Brooklyn, Queens, and surrounding areas.
           </p>
         </AnimatedSection>
 
@@ -96,11 +150,10 @@ export default function Services() {
 
                   <MagneticButton className="mt-6">
                     <a
-                      href="#contact"
+                      href={service.galleryHref}
                       className="inline-flex items-center gap-2 text-sm text-[#00f0ff] hover:gap-3 transition-all"
-                      data-cursor="pointer"
                     >
-                      Request this service
+                      {service.galleryLabel}
                       <ArrowRight className="h-4 w-4" />
                     </a>
                   </MagneticButton>
@@ -109,6 +162,51 @@ export default function Services() {
             </AnimatedSection>
           ))}
         </div>
+
+        <AnimatedSection delay={0.25} variant="fade" className="mt-16 sm:mt-20">
+          <div className="text-center mb-8 sm:mb-10">
+            <p className="text-[#3b82f6] text-xs sm:text-sm font-medium tracking-widest uppercase mb-3">
+              Commercial
+            </p>
+            <h3 className="font-[family-name:var(--font-orbitron)] text-xl sm:text-2xl md:text-3xl font-bold text-white">
+              Specialized <span className="text-neon-gradient">Services</span>
+            </h3>
+            <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+              Recurring and on-demand cleaning for retail, restaurants, banks, and
+              property managers.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {commercialServices.map((item, index) => (
+              <AnimatedSection key={item.title} delay={index * 0.06} variant="scale">
+                <GlowCard className="rounded-xl p-5 sm:p-6 h-full flex flex-col">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#3b82f6]/10 border border-[#3b82f6]/25 mb-4">
+                    <item.icon className="h-5 w-5 text-[#3b82f6]" />
+                  </div>
+                  <h4 className="font-[family-name:var(--font-orbitron)] text-base sm:text-lg font-bold text-white mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-slate-400 text-sm leading-relaxed flex-1">
+                    {item.description}
+                  </p>
+                </GlowCard>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <MagneticButton>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-sm text-[#00f0ff] hover:gap-3 transition-all"
+              >
+                Request a commercial quote
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </MagneticButton>
+          </div>
+        </AnimatedSection>
 
         <AnimatedSection delay={0.3} variant="slide" className="mt-12">
           <GlowCard className="rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8">

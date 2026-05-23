@@ -4,14 +4,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles, Shield, Award } from "lucide-react";
 import WaterDroplet from "./effects/WaterDroplet";
-import ImagePlaceholder from "./ImagePlaceholder";
+import PowerWashHero from "./effects/PowerWashHero";
 import MorphingButton from "./effects/MorphingButton";
 import GlowCard from "./effects/GlowCard";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 const badges = [
   { icon: Award, text: "5+ Years of Hands-on Experience" },
-  { icon: Shield, text: "Newly Registered, Expertly Executed" },
+  { icon: Shield, text: "Fully Insured" },
 ];
 
 export default function Hero() {
@@ -31,7 +31,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden scanlines"
+      className="relative min-h-[100dvh] flex flex-col overflow-hidden scanlines"
     >
       <motion.div style={{ y: bgY }} className="absolute inset-0 -top-[10%] h-[120%]">
         <div className="absolute inset-0 cyber-grid" />
@@ -44,8 +44,16 @@ export default function Hero() {
         )}
       </motion.div>
 
-      <motion.div style={{ y: contentY, opacity }} className="relative z-10 w-full">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-20">
+      {/* Interactive power wash — full width at very top */}
+      <div className="relative z-20 w-full pt-20 sm:pt-24 px-0 sm:px-4 lg:px-6">
+        <PowerWashHero className="w-full max-w-6xl mx-auto" />
+      </div>
+
+      <motion.div
+        style={{ y: contentY, opacity }}
+        className="relative z-10 w-full flex-1 flex items-center"
+      >
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-12 sm:pb-20 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-4 sm:gap-6 lg:gap-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -85,7 +93,8 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="mt-4 sm:mt-6 text-base sm:text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 px-1"
               >
-                Premium Pressure Washing &amp; Mobile Carwash Services.
+                Premium Pressure Washing &amp; Mobile Carwash — serving Long Island,
+                Brooklyn, Queens, and surrounding areas.
               </motion.p>
 
               <motion.div
@@ -135,21 +144,6 @@ export default function Hero() {
               <WaterDroplet />
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mt-10 sm:mt-16 mx-auto max-w-4xl w-full"
-          >
-            <GlowCard className="rounded-2xl p-1.5 sm:p-2">
-              <ImagePlaceholder
-                src="/images/hero-work.jpg"
-                alt="Prestige Polish service vehicle or work showcase"
-                className="w-full h-48 sm:h-64 md:h-80 lg:h-96 rounded-xl"
-              />
-            </GlowCard>
-          </motion.div>
         </div>
       </motion.div>
 

@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import HorizontalGallery from "@/components/effects/HorizontalGallery";
+import WorkGallery from "@/components/WorkGallery";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -15,7 +15,7 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Services />
-        <HorizontalGallery />
+        <WorkGallery />
         <About />
         <Contact />
         <Footer />

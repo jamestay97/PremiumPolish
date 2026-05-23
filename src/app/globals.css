@@ -40,6 +40,144 @@ body {
   display: none;
 }
 
+@media (pointer: fine) {
+  .power-wash-cursor {
+    cursor: none;
+  }
+}
+
+.power-wash-hero__frame {
+  isolation: isolate;
+}
+
+/* ── Realistic pressure washer cursor ── */
+.pw-wand-cursor {
+  width: 118px;
+  height: 96px;
+  transition: opacity 0.15s ease;
+}
+
+/* Rotate gun + spray together around the nozzle tip */
+.pw-wand-pivot {
+  position: relative;
+  width: 118px;
+  height: 96px;
+  transform: rotate(-4deg);
+  transform-origin: 115px 45px;
+}
+
+.pw-wand-svg {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.pw-nozzle-glow {
+  animation: pw-nozzle-pulse 0.25s ease-in-out infinite alternate;
+}
+
+.pw-trigger--pulled {
+  transform: translate(1px, 2px);
+  transform-origin: 30px 58px;
+}
+
+@keyframes pw-nozzle-pulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; filter: drop-shadow(0 0 4px #bae6fd); }
+}
+
+/* Fan spray — origin at nozzle tip (115, 45) */
+.pw-real-spray {
+  position: absolute;
+  left: 115px;
+  top: 45px;
+  width: 120px;
+  height: 56px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.35;
+  transition: opacity 0.1s ease;
+  z-index: 0;
+}
+
+.pw-real-spray--active {
+  opacity: 1;
+}
+
+.pw-fan-spray {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 115px;
+  height: 52px;
+  margin-top: -26px;
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(186, 230, 253, 0.75) 15%,
+    rgba(125, 211, 252, 0.45) 45%,
+    rgba(56, 189, 248, 0.15) 75%,
+    transparent 100%
+  );
+  clip-path: polygon(0% 42%, 100% 0%, 100% 100%, 0% 58%);
+  filter: blur(0.5px);
+}
+
+.pw-fan-spray--inner {
+  width: 90px;
+  height: 36px;
+  margin-top: -18px;
+  opacity: 0.85;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(224, 242, 254, 0.7) 30%,
+    rgba(125, 211, 252, 0.2) 70%,
+    transparent 100%
+  );
+  clip-path: polygon(0% 44%, 100% 10%, 100% 90%, 0% 56%);
+}
+
+.pw-real-spray--active .pw-fan-spray {
+  animation: pw-fan-pulse 0.15s ease-in-out infinite alternate;
+}
+
+@keyframes pw-fan-pulse {
+  from { transform: scaleX(0.94); opacity: 0.85; }
+  to { transform: scaleX(1.04); opacity: 1; }
+}
+
+/* Mist particles in fan */
+.pw-mist-particle {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 4px rgba(186, 230, 253, 0.8);
+  opacity: 0;
+}
+
+.pw-real-spray--active .pw-mist-particle {
+  animation: pw-mist-fly 0.4s linear infinite;
+  animation-delay: calc(var(--i, 0) * 0.07s);
+}
+
+@keyframes pw-mist-fly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(calc(60px + var(--i, 0) * 18px), calc((var(--i, 0) - 2) * 14px)) scale(0.3);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 1023px) {
   .btn-glow,
   .btn-outline {

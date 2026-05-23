@@ -1,8 +1,6 @@
 import { Droplets } from "lucide-react";
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="relative border-t border-[rgba(0,240,255,0.1)] py-12 px-6">
       <div className="mx-auto max-w-6xl">
@@ -27,19 +25,17 @@ export default function Footer() {
           </nav>
 
           <p className="text-sm text-slate-500 text-center md:text-right">
-            © {year} Prestige Polish LLC. All rights reserved.
-            <br className="sm:hidden" />
-            <span className="hidden sm:inline"> · </span>
-            Bronx, NY
+            © 2021 Prestige Polish LLC. All rights reserved.
           </p>
         </div>
 
         <div className="mt-8 pt-8 border-t border-[rgba(255,255,255,0.05)] text-center text-xs text-slate-600 leading-relaxed px-2">
           <p className="break-words">
             2701 Waterbury Ave, Bronx, NY 10461
-            <br className="sm:hidden" />
-            <span className="hidden sm:inline"> · </span>
-            (347) 757-1186 · (863) 521-7429
+            <br />
+            Call: (347) 757-1186 · (863) 521-7429
+            <br />
+            Text only: (407) 818-5098
             <br />
             prestigepolish42@gmail.com
           </p>

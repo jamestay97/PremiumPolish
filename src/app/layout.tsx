@@ -22,11 +22,13 @@ export const viewport = {
 export const metadata: Metadata = {
   title: "Prestige Polish LLC | Premium Pressure Washing & Mobile Carwash",
   description:
-    "Premium pressure washing and mobile carwash services in the Bronx, NY. Available 7 days a week. Residential and commercial.",
+    "Premium pressure washing and mobile carwash services on Long Island, Brooklyn, Queens, and surrounding areas. Available 7 days a week.",
   keywords: [
     "pressure washing",
     "mobile carwash",
-    "Bronx NY",
+    "Long Island",
+    "Brooklyn",
+    "Queens",
     "Prestige Polish",
     "commercial cleaning",
     "residential cleaning",

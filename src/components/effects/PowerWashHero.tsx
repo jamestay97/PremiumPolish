@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Droplets } from "lucide-react";
 import PowerWasherCursor from "./PowerWasherCursor";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
@@ -435,15 +436,25 @@ export default function PowerWashHero({
           />
         )}
 
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 glass rounded-full px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 pointer-events-none">
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 glass rounded-full px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 pointer-events-none z-20">
           Before
         </div>
-        <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 glass rounded-full px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-[#00f0ff] pointer-events-none">
+        <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 glass rounded-full px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-[#00f0ff] pointer-events-none z-20">
           After
         </div>
 
+        {/* Brand overlay — matches navbar / site styling */}
+        <div className="absolute inset-x-0 top-[14%] sm:top-[16%] flex justify-center pointer-events-none z-20 px-4">
+          <div className="flex items-center gap-2 sm:gap-3 glass rounded-2xl px-4 py-2.5 sm:px-6 sm:py-3 shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
+            <Droplets className="h-6 w-6 sm:h-8 sm:w-8 text-[#00f0ff] shrink-0 drop-shadow-[0_0_8px_#00f0ff]" />
+            <span className="font-[family-name:var(--font-orbitron)] text-xl sm:text-3xl md:text-4xl font-bold tracking-wider text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+              PRESTIGE<span className="text-[#00f0ff]">POLISH</span>
+            </span>
+          </div>
+        </div>
+
         {hintVisible && ready && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="absolute inset-x-0 bottom-[18%] sm:bottom-[20%] flex justify-center pointer-events-none z-20 px-4">
             <p className="glass rounded-full px-4 py-2 text-xs sm:text-sm text-[#00f0ff] animate-pulse">
               {isMobile ? "Drag to power wash →" : "Move the wand to power wash →"}
             </p>

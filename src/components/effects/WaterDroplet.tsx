@@ -51,11 +51,11 @@ export default function WaterDroplet({ className = "" }: WaterDropletProps) {
       aria-label="Water droplet"
     >
       <div
-        className="absolute inset-3 rounded-full bg-[#00f0ff]/20 blur-2xl pointer-events-none"
+        className="absolute inset-3 rounded-full bg-[#9333ea]/20 blur-2xl pointer-events-none"
         aria-hidden
       />
       <div
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 h-2 w-16 rounded-full bg-[#00f0ff]/30 blur-md pointer-events-none"
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 h-2 w-16 rounded-full bg-[#9333ea]/30 blur-md pointer-events-none"
         aria-hidden
       />
 
@@ -88,7 +88,7 @@ export default function WaterDroplet({ className = "" }: WaterDropletProps) {
             viewBox="0 0 120 150"
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
-            className="drop-shadow-[0_0_24px_rgba(0,240,255,0.45)]"
+            className="drop-shadow-[0_0_24px_rgba(147,51,234,0.45)]"
             aria-hidden
           >
             <defs>
@@ -125,7 +125,7 @@ export default function WaterDroplet({ className = "" }: WaterDropletProps) {
       </motion.div>
 
       <div
-        className="absolute inset-2 rounded-full border border-[#00f0ff]/30 pointer-events-none"
+        className="absolute inset-2 rounded-full border border-[#9333ea]/30 pointer-events-none"
         aria-hidden
       />
     </div>

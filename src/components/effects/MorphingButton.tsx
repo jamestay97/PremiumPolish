@@ -66,14 +66,14 @@ export default function MorphingButton({
                 stiffness: 400,
                 damping: 12,
               }}
-              className="flex items-center gap-2 font-semibold text-white"
+              className="flex items-center gap-2 font-semibold text-gray-900"
             >
               <motion.span
                 initial={{ rotate: -90 }}
                 animate={{ rotate: 0 }}
                 className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400 shadow-[0_0_16px_rgba(52,211,153,0.8)]"
               >
-                <Check className="h-4 w-4 text-[#050508]" strokeWidth={3} />
+                <Check className="h-4 w-4 text-white" strokeWidth={3} />
               </motion.span>
               Ready!
             </motion.span>

@@ -141,17 +141,17 @@ function drawBrandLogo(
   const iconCx = textX - gap - iconSize / 2;
 
   if (variant === "clean") {
-    drawDropletIcon(ctx, iconCx, centerY, iconSize, "#00f0ff", "#00f0ff");
+    drawDropletIcon(ctx, iconCx, centerY, iconSize, "#9333ea", "#9333ea");
     ctx.textAlign = "left";
     ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
     ctx.shadowBlur = fontSize * 0.14;
     ctx.shadowOffsetY = fontSize * 0.04;
     ctx.fillStyle = "#ffffff";
     ctx.fillText(prestige, textX, centerY);
-    ctx.shadowColor = "rgba(0, 240, 255, 0.55)";
+    ctx.shadowColor = "rgba(147, 51, 234, 0.55)";
     ctx.shadowBlur = fontSize * 0.22;
     ctx.shadowOffsetY = 0;
-    ctx.fillStyle = "#00f0ff";
+    ctx.fillStyle = "#9333ea";
     ctx.fillText(polish, textX + prestigeWidth, centerY);
   } else {
     drawDropletIcon(ctx, iconCx, centerY, iconSize, "#4a5548");
@@ -569,7 +569,7 @@ export default function PowerWashHero({
     <div className={`power-wash-hero ${className}`}>
       <div
         ref={containerRef}
-        className="power-wash-hero__frame relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] max-h-[min(70vh,520px)] overflow-hidden rounded-none sm:rounded-2xl border-y sm:border border-[rgba(0,240,255,0.15)] shadow-[0_0_40px_rgba(0,240,255,0.08)]"
+        className="power-wash-hero__frame relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] max-h-[min(70vh,520px)] overflow-hidden rounded-none sm:rounded-2xl border-y sm:border border-[rgba(147,51,234,0.15)] shadow-[0_0_40px_rgba(147,51,234,0.08)]"
       >
         <canvas
           ref={cleanCanvasRef}
@@ -597,36 +597,36 @@ export default function PowerWashHero({
           />
         )}
 
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 glass rounded-full px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 pointer-events-none z-20">
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 glass rounded-full px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-gray-600 pointer-events-none z-20">
           Before
         </div>
-        <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 glass rounded-full px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-[#00f0ff] pointer-events-none z-20">
+        <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 glass rounded-full px-3 py-1 text-[10px] sm:text-xs uppercase tracking-widest text-[#9333ea] pointer-events-none z-20">
           After
         </div>
 
         {hintVisible && ready && (
           <div className="absolute inset-x-0 bottom-[10%] sm:bottom-[12%] flex justify-center pointer-events-none z-20 px-4">
-            <p className="glass rounded-full px-4 py-2 text-xs sm:text-sm text-[#00f0ff] animate-pulse">
+            <p className="glass rounded-full px-4 py-2 text-xs sm:text-sm text-[#9333ea] animate-pulse">
               {isMobile ? "Drag to power wash →" : "Move the wand to power wash →"}
             </p>
           </div>
         )}
 
         {!ready && (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#0c0e14]/80 pointer-events-none">
-            <p className="text-sm text-slate-400">Loading demo…</p>
+          <div className="absolute inset-0 flex items-center justify-center bg-sky-200/80 pointer-events-none">
+            <p className="text-sm text-gray-600">Loading demo…</p>
           </div>
         )}
       </div>
 
       <div className="flex items-center justify-between mt-3 px-1 max-w-6xl mx-auto w-full">
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-gray-600">
           Simulated power wash — drag across the surface to reveal the clean layer.
         </p>
         <button
           type="button"
           onClick={resetWash}
-          className="text-xs text-[#00f0ff] hover:underline shrink-0 ml-4"
+          className="text-xs text-[#9333ea] hover:underline shrink-0 ml-4"
         >
           Reset
         </button>

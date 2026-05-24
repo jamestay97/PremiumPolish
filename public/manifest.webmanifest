@@ -1,0 +1,11 @@
+{
+  "name": "Prestige Polish LLC",
+  "short_name": "Prestige Polish",
+  "description": "Premium pressure washing and mobile carwash on Long Island, Brooklyn, and Queens.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#dbeafe",
+  "theme_color": "#9333ea",
+  "lang": "en-US",
+  "orientation": "portrait-primary"
+}

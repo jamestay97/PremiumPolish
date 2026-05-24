@@ -26,7 +26,7 @@ const services = [
     description:
       "High-powered precision cleaning for driveways, patios, siding, decks, and commercial exteriors. We blast away grime with cutting-edge equipment.",
     tags: ["Residential", "Commercial"],
-    imagePath: "/images/house-washing/house-3.jpg",
+    imagePath: "/images/house-washing/house-3.jpeg",
     imageAlt: "Pressure washing service in action",
     galleryHref: "#gallery-house",
     galleryLabel: "View house washing photos",
@@ -37,8 +37,8 @@ const services = [
     description:
       "Full-service detailing brought to your doorstep. Exterior wash, interior vacuum, tire shine, and premium finish — wherever you are.",
     tags: ["Residential", "Commercial"],
-    imagePath: "/images/car-washing/car-1.jpg",
-    imageAlt: "Mobile carwash service",
+    imagePath: "/images/car-washing/car-2.jpeg",
+    imageAlt: "Jeep covered in snow foam during mobile carwash",
     galleryHref: "#gallery-car",
     galleryLabel: "View carwash photos",
   },
@@ -90,17 +90,17 @@ const commercialServices: {
 export default function Services() {
   return (
     <section id="services" className="relative py-16 sm:py-24 px-4 sm:px-6">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050508] via-[#0c0e14] to-[#050508]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-sky-100 via-sky-200 to-sky-100" />
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <AnimatedSection className="text-center mb-10 sm:mb-16" variant="fade">
-          <p className="text-[#00f0ff] text-xs sm:text-sm font-medium tracking-widest uppercase mb-3">
+          <p className="text-[#9333ea] text-xs sm:text-sm font-medium tracking-widest uppercase mb-3">
             What We Offer
           </p>
-          <h2 className="font-[family-name:var(--font-orbitron)] text-2xl sm:text-4xl md:text-5xl font-bold text-white">
+          <h2 className="font-[family-name:var(--font-orbitron)] text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900">
             Our <span className="text-neon-gradient">Services</span>
           </h2>
-          <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
             Professional cleaning solutions for homes and businesses across Long Island,
             Brooklyn, Queens, and surrounding areas.
           </p>
@@ -116,19 +116,19 @@ export default function Services() {
                     alt={service.imageAlt}
                     className="h-full w-full"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e14] to-transparent z-20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-sky-200 to-transparent z-20 pointer-events-none" />
                 </div>
 
                 <div className="p-6 sm:p-8 flex flex-col flex-1">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#00f0ff]/10 border border-[#00f0ff]/30">
-                      <service.icon className="h-6 w-6 text-[#00f0ff]" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#9333ea]/10 border border-[#9333ea]/30">
+                      <service.icon className="h-6 w-6 text-[#9333ea]" />
                     </div>
                     <div className="flex gap-2">
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="flex items-center gap-1 text-xs text-slate-400 glass rounded-full px-2 py-1"
+                          className="flex items-center gap-1 text-xs text-gray-600 glass rounded-full px-2 py-1"
                         >
                           {tag === "Residential" ? (
                             <Home className="h-3 w-3 text-[#a855f7]" />
@@ -141,17 +141,17 @@ export default function Services() {
                     </div>
                   </div>
 
-                  <h3 className="font-[family-name:var(--font-orbitron)] text-xl font-bold text-white mb-3">
+                  <h3 className="font-[family-name:var(--font-orbitron)] text-xl font-bold text-gray-900 mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed flex-1">
+                  <p className="text-gray-600 text-sm leading-relaxed flex-1">
                     {service.description}
                   </p>
 
                   <MagneticButton className="mt-6">
                     <a
                       href={service.galleryHref}
-                      className="inline-flex items-center gap-2 text-sm text-[#00f0ff] hover:gap-3 transition-all"
+                      className="inline-flex items-center gap-2 text-sm text-[#9333ea] hover:gap-3 transition-all"
                     >
                       {service.galleryLabel}
                       <ArrowRight className="h-4 w-4" />
@@ -168,10 +168,10 @@ export default function Services() {
             <p className="text-[#3b82f6] text-xs sm:text-sm font-medium tracking-widest uppercase mb-3">
               Commercial
             </p>
-            <h3 className="font-[family-name:var(--font-orbitron)] text-xl sm:text-2xl md:text-3xl font-bold text-white">
+            <h3 className="font-[family-name:var(--font-orbitron)] text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
               Specialized <span className="text-neon-gradient">Services</span>
             </h3>
-            <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+            <p className="mt-3 text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
               Recurring and on-demand cleaning for retail, restaurants, banks, and
               property managers.
             </p>
@@ -184,10 +184,10 @@ export default function Services() {
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#3b82f6]/10 border border-[#3b82f6]/25 mb-4">
                     <item.icon className="h-5 w-5 text-[#3b82f6]" />
                   </div>
-                  <h4 className="font-[family-name:var(--font-orbitron)] text-base sm:text-lg font-bold text-white mb-2">
+                  <h4 className="font-[family-name:var(--font-orbitron)] text-base sm:text-lg font-bold text-gray-900 mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-slate-400 text-sm leading-relaxed flex-1">
+                  <p className="text-gray-600 text-sm leading-relaxed flex-1">
                     {item.description}
                   </p>
                 </GlowCard>
@@ -199,7 +199,7 @@ export default function Services() {
             <MagneticButton>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 text-sm text-[#00f0ff] hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-sm text-[#9333ea] hover:gap-3 transition-all"
               >
                 Request a commercial quote
                 <ArrowRight className="h-4 w-4" />
@@ -211,10 +211,10 @@ export default function Services() {
         <AnimatedSection delay={0.3} variant="slide" className="mt-12">
           <GlowCard className="rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 text-center md:text-left">
-              <h3 className="font-[family-name:var(--font-orbitron)] text-2xl font-bold text-white mb-3">
+              <h3 className="font-[family-name:var(--font-orbitron)] text-2xl font-bold text-gray-900 mb-3">
                 Residential &amp; Commercial
               </h3>
-              <p className="text-slate-400 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 From single-family homes to office complexes, retail storefronts, and
                 fleet vehicles — Prestige Polish scales to your needs with the same
                 premium standard every time.
@@ -223,11 +223,11 @@ export default function Services() {
             <div className="flex gap-6">
               <div className="text-center">
                 <Home className="h-10 w-10 text-[#a855f7] mx-auto mb-2" />
-                <span className="text-sm text-slate-300">Residential</span>
+                <span className="text-sm text-gray-700">Residential</span>
               </div>
               <div className="text-center">
                 <Building2 className="h-10 w-10 text-[#3b82f6] mx-auto mb-2" />
-                <span className="text-sm text-slate-300">Commercial</span>
+                <span className="text-sm text-gray-700">Commercial</span>
               </div>
             </div>
           </GlowCard>
